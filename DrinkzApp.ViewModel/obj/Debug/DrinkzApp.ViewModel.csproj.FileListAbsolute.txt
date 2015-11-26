@@ -1,0 +1,4 @@
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\bin\Debug\DrinkzApp.ViewModel.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\bin\Debug\DrinkzApp.ViewModel.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\obj\Debug\DrinkzApp.ViewModel.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\obj\Debug\DrinkzApp.ViewModel.pdb

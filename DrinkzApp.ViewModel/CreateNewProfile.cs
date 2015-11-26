@@ -8,6 +8,8 @@ namespace DrinkzApp.ViewModel
 {
     public class CreateNewProfile
     {
+        public int PK_PROFILE { get; set; }
+
         public string FACEBOOK_ID { get; set; }
 
         public string NAME { get; set; }

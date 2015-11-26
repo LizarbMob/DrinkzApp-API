@@ -1,0 +1,13 @@
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Bll.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Bll.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Dal.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Dto.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.ViewModel.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Data.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Dal.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Dto.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.ViewModel.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\bin\Debug\DrinkzApp.Data.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\obj\Debug\DrinkzApp.Bll.csprojResolveAssemblyReference.cache
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\obj\Debug\DrinkzApp.Bll.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Bll\obj\Debug\DrinkzApp.Bll.pdb

@@ -1,0 +1,4 @@
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dto\bin\Debug\DrinkzApp.Dto.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dto\bin\Debug\DrinkzApp.Dto.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dto\obj\Debug\DrinkzApp.Dto.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dto\obj\Debug\DrinkzApp.Dto.pdb

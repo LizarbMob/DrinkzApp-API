@@ -1,0 +1,14 @@
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\DrinkzApp.Dal.dll.config
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\DrinkzApp.Dal.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\DrinkzApp.Dal.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\DrinkzApp.Data.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\DrinkzApp.Dto.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\EntityFramework.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\DrinkzApp.Data.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\DrinkzApp.Dto.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\EntityFramework.xml
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\obj\Debug\DrinkzApp.Dal.csprojResolveAssemblyReference.cache
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\obj\Debug\DrinkzApp.Dal.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Dal\obj\Debug\DrinkzApp.Dal.pdb

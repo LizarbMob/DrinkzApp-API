@@ -16,6 +16,6 @@ namespace DrinkzApp.Dto
 
         public string STATE { get; set; }
 
-        public int PK_PROFILE { get; set; }
+        public int FK_PROFILE { get; set; }
     }
 }

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrinkzApp.Dto
+namespace DrinkzApp.ViewModel
 {
-    public class Profile
+    public class CreateNewProfile
     {
-        public int PK_PROFILE { get; set; }
-
         public string FACEBOOK_ID { get; set; }
 
         public string NAME { get; set; }
@@ -19,5 +17,12 @@ namespace DrinkzApp.Dto
         public string DEVICE_ID { get; set; }
 
         public int OS_ID { get; set; }
+
+        public string ZIP_CODE { get; set; }
+
+        public string STREET { get; set; }
+
+        public string STATE { get; set; }
+
     }
 }

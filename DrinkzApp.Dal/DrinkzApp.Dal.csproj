@@ -41,6 +41,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DrinkzApp.Data\DrinkzApp.Data.csproj">
+      <Project>{a1162c0f-819d-46b5-bc49-599a91655175}</Project>
+      <Name>DrinkzApp.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrinkzApp.Dto\DrinkzApp.Dto.csproj">
+      <Project>{ae080a32-7ae3-4306-8e11-67a129fb873d}</Project>
+      <Name>DrinkzApp.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

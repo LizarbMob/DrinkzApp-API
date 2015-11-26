@@ -236,6 +236,16 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DrinkzApp.Bll\DrinkzApp.Bll.csproj">
+      <Project>{ab0be87c-2113-43e7-91c3-9973529c6cd6}</Project>
+      <Name>DrinkzApp.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrinkzApp.ViewModel\DrinkzApp.ViewModel.csproj">
+      <Project>{cf2eca70-abcd-454f-87bf-1cfea7228f28}</Project>
+      <Name>DrinkzApp.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

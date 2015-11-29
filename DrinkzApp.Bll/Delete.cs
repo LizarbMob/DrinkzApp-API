@@ -8,5 +8,9 @@ namespace DrinkzApp.Bll
 {
     public class Delete
     {
+        public static void DeleteProfile(int id)
+        {
+        
+        }
     }
 }

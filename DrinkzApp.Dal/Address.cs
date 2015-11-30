@@ -26,5 +26,17 @@ namespace DrinkzApp.Dal
                 db.SubmitChanges();
             }
         }
+
+        public static void DeleteProfileAddress(int id)
+        {
+            using (var db = new Data.DrinkzAppBDDataContext())
+            {
+                var dbAddress =  db.Addresses.Where(c => c.FK_PROFILE == id).FirstOrDefault();
+
+                db.Addresses.DeleteOnSubmit(dbAddress);
+
+                db.SubmitChanges();
+            }
+        }
     }
 }

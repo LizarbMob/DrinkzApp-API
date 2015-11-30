@@ -10,7 +10,9 @@ namespace DrinkzApp.Bll
     {
         public static void DeleteProfile(int id)
         {
-        
+            Dal.Address.DeleteProfileAddress(id);
+
+            Dal.Profile.DeleteProfile(id);
         }
     }
 }

@@ -29,5 +29,17 @@ namespace DrinkzApp.Dal
                 return dbProfile.PK_PROFILE;
             }
         }
+
+        public static void DeleteProfile(int id)
+        {
+            using (var db = new Data.DrinkzAppBDDataContext())
+            {
+                var dbProfile = db.Profiles.Where(c => c.PK_PROFILE == id).FirstOrDefault();
+
+                db.Profiles.DeleteOnSubmit(dbProfile);
+
+                db.SubmitChanges();
+            }
+        }
     }
 }

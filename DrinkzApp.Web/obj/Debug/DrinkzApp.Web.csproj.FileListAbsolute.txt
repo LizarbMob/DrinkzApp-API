@@ -34,3 +34,4 @@ C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Web\bin\DrinkzApp.Data.p
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Web\obj\Debug\DrinkzApp.Web.csprojResolveAssemblyReference.cache
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Web\obj\Debug\DrinkzApp.Web.dll
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Web\obj\Debug\DrinkzApp.Web.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Web\bin\XmlDocument.xml

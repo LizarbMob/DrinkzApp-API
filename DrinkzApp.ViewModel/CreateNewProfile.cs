@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DrinkzApp.ViewModel
 {
+    /// <summary>
+    /// ViewModel to create a new profile
+    /// contains all the information needed to
+    /// create a new profile
+    /// </summary>
     public class CreateNewProfile
     {
         public int PK_PROFILE { get; set; }

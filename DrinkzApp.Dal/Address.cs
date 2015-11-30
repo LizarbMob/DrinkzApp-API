@@ -38,5 +38,21 @@ namespace DrinkzApp.Dal
                 db.SubmitChanges();
             }
         }
+
+        public static Dto.Address GetAddressById(int Id)
+        {
+            using (var db = new Data.DrinkzAppBDDataContext())
+            {
+                return db.Addresses.Where(c => c.FK_PROFILE == Id).Select(c => new Dto.Address {
+                
+                    FK_PROFILE = c.FK_PROFILE,
+                    PK_ADDRESS = c.PK_ADDRESS,
+                    STATE = c.STATE,
+                    STREET = c.STREET,
+                    ZIP_CODE = c.ZIP_CODE
+
+                }).FirstOrDefault();
+            }
+        }
     }
 }

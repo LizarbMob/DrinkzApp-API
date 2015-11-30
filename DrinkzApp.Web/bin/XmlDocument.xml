@@ -416,5 +416,12 @@
             <param name="id">Id of the profile you desire to delete</param>
             <returns>Message if it was deleted or an error explaining why it was not deleted</returns>
         </member>
+        <member name="M:DrinkzApp.Web.Controllers.ProfileController.GetProfileById(System.Int32)">
+            <summary>
+            Get a profile selected by an ID
+            </summary>
+            <param name="id">ID of the profile you want to get the information</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

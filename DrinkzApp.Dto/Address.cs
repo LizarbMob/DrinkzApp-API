@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DrinkzApp.Dto
 {
+    /// <summary>
+    /// Class Address from DataBase
+    /// </summary>
     public class Address
     {
         public int PK_ADDRESS { get; set; }

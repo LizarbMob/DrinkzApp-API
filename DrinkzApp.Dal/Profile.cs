@@ -41,5 +41,24 @@ namespace DrinkzApp.Dal
                 db.SubmitChanges();
             }
         }
+
+
+        public static Dto.Profile GetProfileById(int id)
+        {
+            using (var db = new Data.DrinkzAppBDDataContext())
+            {
+                return db.Profiles.Where(c => c.PK_PROFILE == id).Select(c => new Dto.Profile {
+                
+                    DEVICE_ID = c.DEVICE_ID,
+                    FACEBOOK_ID = c.DEVICE_ID,
+                    NAME = c.NAME,
+                    URL_IMAGE = c.URL_IMAGE,
+                    OS_ID = c.OS_ID,
+                    PK_PROFILE = c.PK_PROFILE
+
+                }).FirstOrDefault();
+
+            }
+        }
     }
 }

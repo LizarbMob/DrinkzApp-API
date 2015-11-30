@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DrinkzApp.Dto
 {
+    /// <summary>
+    /// Class Profile from DataBase
+    /// </summary>
     public class Profile
     {
         public int PK_PROFILE { get; set; }

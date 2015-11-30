@@ -40,7 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateNewProfile.cs" />
+    <Compile Include="GetProfileById.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DrinkzApp.Dto\DrinkzApp.Dto.csproj">
+      <Project>{ae080a32-7ae3-4306-8e11-67a129fb873d}</Project>
+      <Name>DrinkzApp.Dto</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,3 +2,6 @@ C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\bin\Debug\Drin
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\bin\Debug\DrinkzApp.ViewModel.pdb
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\obj\Debug\DrinkzApp.ViewModel.dll
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\obj\Debug\DrinkzApp.ViewModel.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\bin\Debug\DrinkzApp.Dto.dll
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\bin\Debug\DrinkzApp.Dto.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.ViewModel\obj\Debug\DrinkzApp.ViewModel.csprojResolveAssemblyReference.cache

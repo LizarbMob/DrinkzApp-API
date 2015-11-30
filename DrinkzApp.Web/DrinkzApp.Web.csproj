@@ -272,6 +272,10 @@
       <Project>{ab0be87c-2113-43e7-91c3-9973529c6cd6}</Project>
       <Name>DrinkzApp.Bll</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DrinkzApp.Dto\DrinkzApp.Dto.csproj">
+      <Project>{ae080a32-7ae3-4306-8e11-67a129fb873d}</Project>
+      <Name>DrinkzApp.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DrinkzApp.ViewModel\DrinkzApp.ViewModel.csproj">
       <Project>{cf2eca70-abcd-454f-87bf-1cfea7228f28}</Project>
       <Name>DrinkzApp.ViewModel</Name>

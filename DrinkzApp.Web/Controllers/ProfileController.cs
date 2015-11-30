@@ -27,12 +27,12 @@ namespace DrinkzApp.Web.Controllers
             {
                 Bll.Create.CreateNewProfile(profile);
 
-                return Request.CreateResponse(HttpStatusCode.OK,"Profile created");
+                return Request.CreateResponse(HttpStatusCode.OK, "Profile created");
             }
             catch (Exception ex)
             {
 
-                return Request.CreateResponse(HttpStatusCode.BadRequest,ex.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
@@ -48,13 +48,32 @@ namespace DrinkzApp.Web.Controllers
             {
                 Bll.Delete.DeleteProfile(id);
 
-                return Request.CreateResponse(HttpStatusCode.OK,"Profile Deleted");
+                return Request.CreateResponse(HttpStatusCode.OK, "Profile Deleted");
             }
             catch (Exception ex)
             {
 
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Get a profile selected by an ID
+        /// </summary>
+        /// <param name="id">ID of the profile you want to get the information</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ViewModel.GetProfileById GetProfileById(int id)
+        {
+
+            var Profile = Bll.Select.GetProfileById(id);
+
+            if(Profile.Profile == null)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, String.Format("Profile {0} not found.", id)));
+            }
+
+            return Profile;
         }
     }
 }

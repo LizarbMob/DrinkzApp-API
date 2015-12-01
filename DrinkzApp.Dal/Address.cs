@@ -12,8 +12,9 @@ namespace DrinkzApp.Dal
         {
             using (var db = new Data.DrinkzAppBDDataContext())
             {
-                var dbAddress = new Data.Address() {
-                
+                var dbAddress = new Data.Address()
+                {
+
                     FK_PROFILE = address.FK_PROFILE,
                     STATE = address.STATE,
                     STREET = address.STREET,
@@ -31,7 +32,7 @@ namespace DrinkzApp.Dal
         {
             using (var db = new Data.DrinkzAppBDDataContext())
             {
-                var dbAddress =  db.Addresses.Where(c => c.FK_PROFILE == id).FirstOrDefault();
+                var dbAddress = db.Addresses.Where(c => c.FK_PROFILE == id).FirstOrDefault();
 
                 db.Addresses.DeleteOnSubmit(dbAddress);
 
@@ -43,8 +44,9 @@ namespace DrinkzApp.Dal
         {
             using (var db = new Data.DrinkzAppBDDataContext())
             {
-                return db.Addresses.Where(c => c.FK_PROFILE == Id).Select(c => new Dto.Address {
-                
+                return db.Addresses.Where(c => c.FK_PROFILE == Id).Select(c => new Dto.Address
+                {
+
                     FK_PROFILE = c.FK_PROFILE,
                     PK_ADDRESS = c.PK_ADDRESS,
                     STATE = c.STATE,
@@ -53,6 +55,22 @@ namespace DrinkzApp.Dal
 
                 }).FirstOrDefault();
             }
+        }
+
+        public static void UpdateAddress(Dto.Address address)
+        {
+            using (var db = new Data.DrinkzAppBDDataContext())
+            {
+                var dbAddress = db.Addresses.Where(c=> c.FK_PROFILE == address.FK_PROFILE).FirstOrDefault();
+
+                dbAddress.STATE = address.STATE;
+                dbAddress.ZIP_CODE = address.ZIP_CODE;
+                dbAddress.STREET = address.STREET;
+
+                db.SubmitChanges();
+            }
+
+
         }
     }
 }

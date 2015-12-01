@@ -47,8 +47,9 @@ namespace DrinkzApp.Dal
         {
             using (var db = new Data.DrinkzAppBDDataContext())
             {
-                return db.Profiles.Where(c => c.PK_PROFILE == id).Select(c => new Dto.Profile {
-                
+                return db.Profiles.Where(c => c.PK_PROFILE == id).Select(c => new Dto.Profile
+                {
+
                     DEVICE_ID = c.DEVICE_ID,
                     FACEBOOK_ID = c.DEVICE_ID,
                     NAME = c.NAME,
@@ -58,6 +59,22 @@ namespace DrinkzApp.Dal
 
                 }).FirstOrDefault();
 
+            }
+        }
+
+        public static void UpdateProfile(Dto.Profile Profile)
+        {
+            using (var db = new Data.DrinkzAppBDDataContext())
+            {
+                var dbProfile = db.Profiles.Where(c => c.PK_PROFILE == Profile.PK_PROFILE).FirstOrDefault();
+
+                dbProfile.OS_ID = Profile.OS_ID;
+                dbProfile.NAME = Profile.NAME;
+                dbProfile.URL_IMAGE = Profile.URL_IMAGE;
+                dbProfile.DEVICE_ID = Profile.DEVICE_ID;
+                dbProfile.FACEBOOK_ID = Profile.FACEBOOK_ID;
+
+                db.SubmitChanges();
             }
         }
     }

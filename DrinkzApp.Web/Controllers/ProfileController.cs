@@ -75,5 +75,21 @@ namespace DrinkzApp.Web.Controllers
 
             return Profile;
         }
+
+        [HttpPut]
+        public HttpResponseMessage UpdateProfile(ViewModel.UpdateProfile profile)
+        {
+            try
+            {
+                Bll.Update.UpdateProfile(profile);
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Profile Updated");
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }

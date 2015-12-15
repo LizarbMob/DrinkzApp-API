@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateNewDrink.cs" />
     <Compile Include="CreateNewProfile.cs" />
     <Compile Include="GetProfileById.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -32,5 +32,47 @@ namespace DrinkzApp.Dal
                 db.SubmitChanges();
             }
         }
+
+        public static Dto.Drink GetDrinkById(int id)
+        {
+            using (var db = new DrinkzAppBDDataContext())
+            {
+                return db.Drinks.Where(c => c.PK_DRINK == id).Select(c => new Dto.Drink {
+                
+                    CREATION_DATE = c.CREATION_DATE,
+                    FK_CATEGORY = c.FK_CATEGORY,
+                    NAME = c.NAME,
+                    DESCRIPTION = c.DESCRIPTION,
+                    FK_PROFILE = c.PK_PROFILE,
+                    HOWTO = c.HOWTO,
+                    LIKES = c.LIKES,
+                    PK_DRINK = c.PK_DRINK,
+                    VIEWS = c.VIEWS,
+                    YOUTUBE_URL = c.YOUTUBE_URL
+
+                }).FirstOrDefault();
+            }
+        }
+
+        public static List<Dto.Drink> GetAllDrinks()
+        {
+            using (var db = new DrinkzAppBDDataContext())
+            {
+                return db.Drinks.Select(c=> new Dto.Drink {
+
+                CREATION_DATE = c.CREATION_DATE,
+                DESCRIPTION = c.DESCRIPTION,
+                FK_CATEGORY = c.FK_CATEGORY,
+                NAME = c.NAME,
+                FK_PROFILE = c.PK_PROFILE,
+                HOWTO = c.HOWTO,
+                LIKES = c.LIKES,
+                PK_DRINK = c.PK_DRINK,
+                VIEWS = c.VIEWS,
+                YOUTUBE_URL = c.YOUTUBE_URL
+                
+                }).ToList();
+            }
+        }
     }
 }

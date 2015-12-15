@@ -20,7 +20,7 @@ namespace DrinkzApp.Dto
 
         public int FK_CATEGORY { get; set; }
 
-        public int VIEWS { get; set; }
+        public int? VIEWS { get; set; }
 
         public DateTime CREATION_DATE { get; set; }
 

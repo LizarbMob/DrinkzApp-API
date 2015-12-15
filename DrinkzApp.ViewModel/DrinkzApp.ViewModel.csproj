@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="CreateNewDrink.cs" />
     <Compile Include="CreateNewProfile.cs" />
+    <Compile Include="GetAllDrinks.cs" />
+    <Compile Include="GetDrinkById.cs" />
     <Compile Include="GetProfileById.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateProfile.cs" />

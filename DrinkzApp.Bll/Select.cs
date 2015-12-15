@@ -18,5 +18,23 @@ namespace DrinkzApp.Bll
 
             return Profile;
         }
+
+        public static ViewModel.GetDrinkById GetDrinkById(int id)
+        {
+            ViewModel.GetDrinkById Drink = new ViewModel.GetDrinkById();
+
+            Drink.Drink = Dal.Drink.GetDrinkById(id);
+
+            return Drink;
+        }
+
+        public static ViewModel.GetAllDrinks GetAllDrinks()
+        {
+            ViewModel.GetAllDrinks Drinks = new ViewModel.GetAllDrinks();
+
+            Drinks.Drinks = Dal.Drink.GetAllDrinks();
+
+            return Drinks;
+        }
     }
 }

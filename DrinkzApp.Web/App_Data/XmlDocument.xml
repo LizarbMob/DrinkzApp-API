@@ -401,6 +401,20 @@
             Controller for everything related to Drinks
             </summary>
         </member>
+        <member name="M:DrinkzApp.Web.Controllers.DrinkController.CreateNewDrink(DrinkzApp.ViewModel.CreateNewDrink)">
+            <summary>
+            Create a new Drink
+            </summary>
+            <param name="Drink">A DTO of the Drink</param>
+            <returns>Message if the drink was created or not</returns>
+        </member>
+        <member name="M:DrinkzApp.Web.Controllers.DrinkController.GetDrinkById(System.Int32)">
+            <summary>
+            Get a drink by a specific ID
+            </summary>
+            <param name="id">ID of the drink you want</param>
+            <returns>The drink you wanted by the ID given</returns>
+        </member>
         <member name="T:DrinkzApp.Web.Controllers.ProfileController">
             <summary>
             Profile controller where you can create,select and delete anything

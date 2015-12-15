@@ -19,25 +19,6 @@
       <Association Name="Category_Drink" Member="Drinks" ThisKey="PK_CATEGORY" OtherKey="FK_CATEGORY" Type="Drink" />
     </Type>
   </Table>
-  <Table Name="dbo.Drink" Member="Drinks">
-    <Type Name="Drink">
-      <Column Name="PK_DRINK" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="HOWTO" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="LIKES" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FK_CATEGORY" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="VIEWS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="PK_PROFILE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="YOUTUBE_URL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="Drink_Ingredient" Member="Ingredients" ThisKey="PK_DRINK" OtherKey="FK_DRINK" Type="Ingredient" />
-      <Association Name="Drink_Like" Member="Likes1" ThisKey="PK_DRINK" OtherKey="FK_DRINK" Type="Like" />
-      <Association Name="Drink_Picture" Member="Pictures" ThisKey="PK_DRINK" OtherKey="FK_DRINK" Type="Picture" />
-      <Association Name="Category_Drink" Member="Category" ThisKey="FK_CATEGORY" OtherKey="PK_CATEGORY" Type="Category" IsForeignKey="true" />
-      <Association Name="Profile_Drink" Member="Profile" ThisKey="PK_PROFILE" OtherKey="PK_PROFILE" Type="Profile" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Ingredients" Member="Ingredients">
     <Type Name="Ingredient">
       <Column Name="PK_INGREDIENTS" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -52,8 +33,8 @@
       <Column Name="PK_LIKE" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FK_DRINK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FK_PROFILE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Drink_Like" Member="Drink" ThisKey="FK_DRINK" OtherKey="PK_DRINK" Type="Drink" IsForeignKey="true" />
       <Association Name="Profile_Like" Member="Profile" ThisKey="FK_PROFILE" OtherKey="PK_PROFILE" Type="Profile" IsForeignKey="true" />
+      <Association Name="Drink_Like" Member="Drink" ThisKey="FK_DRINK" OtherKey="PK_DRINK" Type="Drink" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Picture" Member="Pictures">
@@ -81,10 +62,10 @@
       <Column Name="DEVICE_ID" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="OS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Profile_Address" Member="Addresses" ThisKey="PK_PROFILE" OtherKey="FK_PROFILE" Type="Address" />
-      <Association Name="Profile_Drink" Member="Drinks" ThisKey="PK_PROFILE" OtherKey="PK_PROFILE" Type="Drink" />
       <Association Name="Profile_Like" Member="Likes" ThisKey="PK_PROFILE" OtherKey="FK_PROFILE" Type="Like" />
       <Association Name="Profile_Preference" Member="Preferences" ThisKey="PK_PROFILE" OtherKey="FK_PROFILE" Type="Preference" />
       <Association Name="Profile_Share" Member="Shares" ThisKey="PK_PROFILE" OtherKey="FK_PROFILE" Type="Share" />
+      <Association Name="Profile_Drink" Member="Drinks" ThisKey="PK_PROFILE" OtherKey="PK_PROFILE" Type="Drink" />
     </Type>
   </Table>
   <Table Name="dbo.Shares" Member="Shares">
@@ -93,6 +74,25 @@
       <Column Name="FK_DRINK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FK_PROFILE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Profile_Share" Member="Profile" ThisKey="FK_PROFILE" OtherKey="PK_PROFILE" Type="Profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drink" Member="Drinks">
+    <Type Name="Drink">
+      <Column Name="PK_DRINK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="HOWTO" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="LIKES" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FK_CATEGORY" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VIEWS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PK_PROFILE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="YOUTUBE_URL" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Drink_Ingredient" Member="Ingredients" ThisKey="PK_DRINK" OtherKey="FK_DRINK" Type="Ingredient" />
+      <Association Name="Drink_Like" Member="Likes1" ThisKey="PK_DRINK" OtherKey="FK_DRINK" Type="Like" />
+      <Association Name="Drink_Picture" Member="Pictures" ThisKey="PK_DRINK" OtherKey="FK_DRINK" Type="Picture" />
+      <Association Name="Category_Drink" Member="Category" ThisKey="FK_CATEGORY" OtherKey="PK_CATEGORY" Type="Category" IsForeignKey="true" />
+      <Association Name="Profile_Drink" Member="Profile" ThisKey="PK_PROFILE" OtherKey="PK_PROFILE" Type="Profile" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

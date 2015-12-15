@@ -91,8 +91,5 @@ namespace DrinkzApp.Web.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-        [HttpPost]
-        public HttpResponseMessage CreatenNewDrink()
     }
 }

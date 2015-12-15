@@ -396,6 +396,11 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:DrinkzApp.Web.Controllers.DrinkController">
+            <summary>
+            Controller for everything related to Drinks
+            </summary>
+        </member>
         <member name="T:DrinkzApp.Web.Controllers.ProfileController">
             <summary>
             Profile controller where you can create,select and delete anything

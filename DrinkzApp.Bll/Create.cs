@@ -29,5 +29,22 @@ namespace DrinkzApp.Bll
 
             });
         }
+
+        public static void CreateNewDrink(ViewModel.CreateNewDrink Drink)
+        {
+            Dal.Drink.CreateNewDrink(new Dto.Drink {
+            
+                CREATION_DATE = Drink.CREATION_DATE,
+                FK_CATEGORY = Drink.FK_CATEGORY,
+                NAME = Drink.NAME,
+                DESCRIPTION= Drink.DESCRIPTION,
+                FK_PROFILE = Drink.FK_PROFILE,
+                HOWTO = Drink.HOWTO,
+                LIKES = 0,
+                VIEWS = 0,
+                YOUTUBE_URL = Drink.YOUTUBE_URL
+
+            });
+        }
     }
 }

@@ -36,9 +36,6 @@ namespace DrinkzApp.Data
     partial void InsertCategory(Category instance);
     partial void UpdateCategory(Category instance);
     partial void DeleteCategory(Category instance);
-    partial void InsertDrink(Drink instance);
-    partial void UpdateDrink(Drink instance);
-    partial void DeleteDrink(Drink instance);
     partial void InsertIngredient(Ingredient instance);
     partial void UpdateIngredient(Ingredient instance);
     partial void DeleteIngredient(Ingredient instance);
@@ -57,6 +54,9 @@ namespace DrinkzApp.Data
     partial void InsertShare(Share instance);
     partial void UpdateShare(Share instance);
     partial void DeleteShare(Share instance);
+    partial void InsertDrink(Drink instance);
+    partial void UpdateDrink(Drink instance);
+    partial void DeleteDrink(Drink instance);
     #endregion
 		
 		public DrinkzAppBDDataContext() : 
@@ -105,14 +105,6 @@ namespace DrinkzApp.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<Drink> Drinks
-		{
-			get
-			{
-				return this.GetTable<Drink>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Ingredient> Ingredients
 		{
 			get
@@ -158,6 +150,14 @@ namespace DrinkzApp.Data
 			get
 			{
 				return this.GetTable<Share>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Drink> Drinks
+		{
+			get
+			{
+				return this.GetTable<Drink>();
 			}
 		}
 	}
@@ -523,6 +523,1148 @@ namespace DrinkzApp.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredients")]
+	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PK_INGREDIENTS;
+		
+		private string _NAME;
+		
+		private string _QTD;
+		
+		private int _FK_DRINK;
+		
+		private EntityRef<Drink> _Drink;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPK_INGREDIENTSChanging(int value);
+    partial void OnPK_INGREDIENTSChanged();
+    partial void OnNAMEChanging(string value);
+    partial void OnNAMEChanged();
+    partial void OnQTDChanging(string value);
+    partial void OnQTDChanged();
+    partial void OnFK_DRINKChanging(int value);
+    partial void OnFK_DRINKChanged();
+    #endregion
+		
+		public Ingredient()
+		{
+			this._Drink = default(EntityRef<Drink>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_INGREDIENTS", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PK_INGREDIENTS
+		{
+			get
+			{
+				return this._PK_INGREDIENTS;
+			}
+			set
+			{
+				if ((this._PK_INGREDIENTS != value))
+				{
+					this.OnPK_INGREDIENTSChanging(value);
+					this.SendPropertyChanging();
+					this._PK_INGREDIENTS = value;
+					this.SendPropertyChanged("PK_INGREDIENTS");
+					this.OnPK_INGREDIENTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string NAME
+		{
+			get
+			{
+				return this._NAME;
+			}
+			set
+			{
+				if ((this._NAME != value))
+				{
+					this.OnNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._NAME = value;
+					this.SendPropertyChanged("NAME");
+					this.OnNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QTD", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string QTD
+		{
+			get
+			{
+				return this._QTD;
+			}
+			set
+			{
+				if ((this._QTD != value))
+				{
+					this.OnQTDChanging(value);
+					this.SendPropertyChanging();
+					this._QTD = value;
+					this.SendPropertyChanged("QTD");
+					this.OnQTDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
+		public int FK_DRINK
+		{
+			get
+			{
+				return this._FK_DRINK;
+			}
+			set
+			{
+				if ((this._FK_DRINK != value))
+				{
+					if (this._Drink.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFK_DRINKChanging(value);
+					this.SendPropertyChanging();
+					this._FK_DRINK = value;
+					this.SendPropertyChanged("FK_DRINK");
+					this.OnFK_DRINKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_Ingredient", Storage="_Drink", ThisKey="FK_DRINK", OtherKey="PK_DRINK", IsForeignKey=true)]
+		public Drink Drink
+		{
+			get
+			{
+				return this._Drink.Entity;
+			}
+			set
+			{
+				Drink previousValue = this._Drink.Entity;
+				if (((previousValue != value) 
+							|| (this._Drink.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Drink.Entity = null;
+						previousValue.Ingredients.Remove(this);
+					}
+					this._Drink.Entity = value;
+					if ((value != null))
+					{
+						value.Ingredients.Add(this);
+						this._FK_DRINK = value.PK_DRINK;
+					}
+					else
+					{
+						this._FK_DRINK = default(int);
+					}
+					this.SendPropertyChanged("Drink");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Likes")]
+	public partial class Like : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PK_LIKE;
+		
+		private int _FK_DRINK;
+		
+		private int _FK_PROFILE;
+		
+		private EntityRef<Profile> _Profile;
+		
+		private EntityRef<Drink> _Drink;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPK_LIKEChanging(int value);
+    partial void OnPK_LIKEChanged();
+    partial void OnFK_DRINKChanging(int value);
+    partial void OnFK_DRINKChanged();
+    partial void OnFK_PROFILEChanging(int value);
+    partial void OnFK_PROFILEChanged();
+    #endregion
+		
+		public Like()
+		{
+			this._Profile = default(EntityRef<Profile>);
+			this._Drink = default(EntityRef<Drink>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_LIKE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PK_LIKE
+		{
+			get
+			{
+				return this._PK_LIKE;
+			}
+			set
+			{
+				if ((this._PK_LIKE != value))
+				{
+					this.OnPK_LIKEChanging(value);
+					this.SendPropertyChanging();
+					this._PK_LIKE = value;
+					this.SendPropertyChanged("PK_LIKE");
+					this.OnPK_LIKEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
+		public int FK_DRINK
+		{
+			get
+			{
+				return this._FK_DRINK;
+			}
+			set
+			{
+				if ((this._FK_DRINK != value))
+				{
+					if (this._Drink.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFK_DRINKChanging(value);
+					this.SendPropertyChanging();
+					this._FK_DRINK = value;
+					this.SendPropertyChanged("FK_DRINK");
+					this.OnFK_DRINKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_PROFILE", DbType="Int NOT NULL")]
+		public int FK_PROFILE
+		{
+			get
+			{
+				return this._FK_PROFILE;
+			}
+			set
+			{
+				if ((this._FK_PROFILE != value))
+				{
+					if (this._Profile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFK_PROFILEChanging(value);
+					this.SendPropertyChanging();
+					this._FK_PROFILE = value;
+					this.SendPropertyChanged("FK_PROFILE");
+					this.OnFK_PROFILEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Like", Storage="_Profile", ThisKey="FK_PROFILE", OtherKey="PK_PROFILE", IsForeignKey=true)]
+		public Profile Profile
+		{
+			get
+			{
+				return this._Profile.Entity;
+			}
+			set
+			{
+				Profile previousValue = this._Profile.Entity;
+				if (((previousValue != value) 
+							|| (this._Profile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Profile.Entity = null;
+						previousValue.Likes.Remove(this);
+					}
+					this._Profile.Entity = value;
+					if ((value != null))
+					{
+						value.Likes.Add(this);
+						this._FK_PROFILE = value.PK_PROFILE;
+					}
+					else
+					{
+						this._FK_PROFILE = default(int);
+					}
+					this.SendPropertyChanged("Profile");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_Like", Storage="_Drink", ThisKey="FK_DRINK", OtherKey="PK_DRINK", IsForeignKey=true)]
+		public Drink Drink
+		{
+			get
+			{
+				return this._Drink.Entity;
+			}
+			set
+			{
+				Drink previousValue = this._Drink.Entity;
+				if (((previousValue != value) 
+							|| (this._Drink.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Drink.Entity = null;
+						previousValue.Likes1.Remove(this);
+					}
+					this._Drink.Entity = value;
+					if ((value != null))
+					{
+						value.Likes1.Add(this);
+						this._FK_DRINK = value.PK_DRINK;
+					}
+					else
+					{
+						this._FK_DRINK = default(int);
+					}
+					this.SendPropertyChanged("Drink");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Picture")]
+	public partial class Picture : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PK_PICTURE;
+		
+		private string _URL_IMAGE;
+		
+		private int _FK_DRINK;
+		
+		private EntityRef<Drink> _Drink;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPK_PICTUREChanging(int value);
+    partial void OnPK_PICTUREChanged();
+    partial void OnURL_IMAGEChanging(string value);
+    partial void OnURL_IMAGEChanged();
+    partial void OnFK_DRINKChanging(int value);
+    partial void OnFK_DRINKChanged();
+    #endregion
+		
+		public Picture()
+		{
+			this._Drink = default(EntityRef<Drink>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_PICTURE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PK_PICTURE
+		{
+			get
+			{
+				return this._PK_PICTURE;
+			}
+			set
+			{
+				if ((this._PK_PICTURE != value))
+				{
+					this.OnPK_PICTUREChanging(value);
+					this.SendPropertyChanging();
+					this._PK_PICTURE = value;
+					this.SendPropertyChanged("PK_PICTURE");
+					this.OnPK_PICTUREChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL_IMAGE", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string URL_IMAGE
+		{
+			get
+			{
+				return this._URL_IMAGE;
+			}
+			set
+			{
+				if ((this._URL_IMAGE != value))
+				{
+					this.OnURL_IMAGEChanging(value);
+					this.SendPropertyChanging();
+					this._URL_IMAGE = value;
+					this.SendPropertyChanged("URL_IMAGE");
+					this.OnURL_IMAGEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
+		public int FK_DRINK
+		{
+			get
+			{
+				return this._FK_DRINK;
+			}
+			set
+			{
+				if ((this._FK_DRINK != value))
+				{
+					if (this._Drink.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFK_DRINKChanging(value);
+					this.SendPropertyChanging();
+					this._FK_DRINK = value;
+					this.SendPropertyChanged("FK_DRINK");
+					this.OnFK_DRINKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_Picture", Storage="_Drink", ThisKey="FK_DRINK", OtherKey="PK_DRINK", IsForeignKey=true)]
+		public Drink Drink
+		{
+			get
+			{
+				return this._Drink.Entity;
+			}
+			set
+			{
+				Drink previousValue = this._Drink.Entity;
+				if (((previousValue != value) 
+							|| (this._Drink.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Drink.Entity = null;
+						previousValue.Pictures.Remove(this);
+					}
+					this._Drink.Entity = value;
+					if ((value != null))
+					{
+						value.Pictures.Add(this);
+						this._FK_DRINK = value.PK_DRINK;
+					}
+					else
+					{
+						this._FK_DRINK = default(int);
+					}
+					this.SendPropertyChanged("Drink");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Preferences")]
+	public partial class Preference : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PK_PREFERENCES;
+		
+		private int _FK_DRINK;
+		
+		private int _FK_PROFILE;
+		
+		private EntityRef<Profile> _Profile;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPK_PREFERENCESChanging(int value);
+    partial void OnPK_PREFERENCESChanged();
+    partial void OnFK_DRINKChanging(int value);
+    partial void OnFK_DRINKChanged();
+    partial void OnFK_PROFILEChanging(int value);
+    partial void OnFK_PROFILEChanged();
+    #endregion
+		
+		public Preference()
+		{
+			this._Profile = default(EntityRef<Profile>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_PREFERENCES", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PK_PREFERENCES
+		{
+			get
+			{
+				return this._PK_PREFERENCES;
+			}
+			set
+			{
+				if ((this._PK_PREFERENCES != value))
+				{
+					this.OnPK_PREFERENCESChanging(value);
+					this.SendPropertyChanging();
+					this._PK_PREFERENCES = value;
+					this.SendPropertyChanged("PK_PREFERENCES");
+					this.OnPK_PREFERENCESChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
+		public int FK_DRINK
+		{
+			get
+			{
+				return this._FK_DRINK;
+			}
+			set
+			{
+				if ((this._FK_DRINK != value))
+				{
+					this.OnFK_DRINKChanging(value);
+					this.SendPropertyChanging();
+					this._FK_DRINK = value;
+					this.SendPropertyChanged("FK_DRINK");
+					this.OnFK_DRINKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_PROFILE", DbType="Int NOT NULL")]
+		public int FK_PROFILE
+		{
+			get
+			{
+				return this._FK_PROFILE;
+			}
+			set
+			{
+				if ((this._FK_PROFILE != value))
+				{
+					if (this._Profile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFK_PROFILEChanging(value);
+					this.SendPropertyChanging();
+					this._FK_PROFILE = value;
+					this.SendPropertyChanged("FK_PROFILE");
+					this.OnFK_PROFILEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Preference", Storage="_Profile", ThisKey="FK_PROFILE", OtherKey="PK_PROFILE", IsForeignKey=true)]
+		public Profile Profile
+		{
+			get
+			{
+				return this._Profile.Entity;
+			}
+			set
+			{
+				Profile previousValue = this._Profile.Entity;
+				if (((previousValue != value) 
+							|| (this._Profile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Profile.Entity = null;
+						previousValue.Preferences.Remove(this);
+					}
+					this._Profile.Entity = value;
+					if ((value != null))
+					{
+						value.Preferences.Add(this);
+						this._FK_PROFILE = value.PK_PROFILE;
+					}
+					else
+					{
+						this._FK_PROFILE = default(int);
+					}
+					this.SendPropertyChanged("Profile");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Profile")]
+	public partial class Profile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PK_PROFILE;
+		
+		private string _FACEBOOK_ID;
+		
+		private string _NAME;
+		
+		private string _URL_IMAGE;
+		
+		private string _DEVICE_ID;
+		
+		private int _OS_ID;
+		
+		private EntitySet<Address> _Addresses;
+		
+		private EntitySet<Like> _Likes;
+		
+		private EntitySet<Preference> _Preferences;
+		
+		private EntitySet<Share> _Shares;
+		
+		private EntitySet<Drink> _Drinks;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPK_PROFILEChanging(int value);
+    partial void OnPK_PROFILEChanged();
+    partial void OnFACEBOOK_IDChanging(string value);
+    partial void OnFACEBOOK_IDChanged();
+    partial void OnNAMEChanging(string value);
+    partial void OnNAMEChanged();
+    partial void OnURL_IMAGEChanging(string value);
+    partial void OnURL_IMAGEChanged();
+    partial void OnDEVICE_IDChanging(string value);
+    partial void OnDEVICE_IDChanged();
+    partial void OnOS_IDChanging(int value);
+    partial void OnOS_IDChanged();
+    #endregion
+		
+		public Profile()
+		{
+			this._Addresses = new EntitySet<Address>(new Action<Address>(this.attach_Addresses), new Action<Address>(this.detach_Addresses));
+			this._Likes = new EntitySet<Like>(new Action<Like>(this.attach_Likes), new Action<Like>(this.detach_Likes));
+			this._Preferences = new EntitySet<Preference>(new Action<Preference>(this.attach_Preferences), new Action<Preference>(this.detach_Preferences));
+			this._Shares = new EntitySet<Share>(new Action<Share>(this.attach_Shares), new Action<Share>(this.detach_Shares));
+			this._Drinks = new EntitySet<Drink>(new Action<Drink>(this.attach_Drinks), new Action<Drink>(this.detach_Drinks));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_PROFILE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PK_PROFILE
+		{
+			get
+			{
+				return this._PK_PROFILE;
+			}
+			set
+			{
+				if ((this._PK_PROFILE != value))
+				{
+					this.OnPK_PROFILEChanging(value);
+					this.SendPropertyChanging();
+					this._PK_PROFILE = value;
+					this.SendPropertyChanged("PK_PROFILE");
+					this.OnPK_PROFILEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACEBOOK_ID", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string FACEBOOK_ID
+		{
+			get
+			{
+				return this._FACEBOOK_ID;
+			}
+			set
+			{
+				if ((this._FACEBOOK_ID != value))
+				{
+					this.OnFACEBOOK_IDChanging(value);
+					this.SendPropertyChanging();
+					this._FACEBOOK_ID = value;
+					this.SendPropertyChanged("FACEBOOK_ID");
+					this.OnFACEBOOK_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string NAME
+		{
+			get
+			{
+				return this._NAME;
+			}
+			set
+			{
+				if ((this._NAME != value))
+				{
+					this.OnNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._NAME = value;
+					this.SendPropertyChanged("NAME");
+					this.OnNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL_IMAGE", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string URL_IMAGE
+		{
+			get
+			{
+				return this._URL_IMAGE;
+			}
+			set
+			{
+				if ((this._URL_IMAGE != value))
+				{
+					this.OnURL_IMAGEChanging(value);
+					this.SendPropertyChanging();
+					this._URL_IMAGE = value;
+					this.SendPropertyChanged("URL_IMAGE");
+					this.OnURL_IMAGEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DEVICE_ID", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string DEVICE_ID
+		{
+			get
+			{
+				return this._DEVICE_ID;
+			}
+			set
+			{
+				if ((this._DEVICE_ID != value))
+				{
+					this.OnDEVICE_IDChanging(value);
+					this.SendPropertyChanging();
+					this._DEVICE_ID = value;
+					this.SendPropertyChanged("DEVICE_ID");
+					this.OnDEVICE_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OS_ID", DbType="Int NOT NULL")]
+		public int OS_ID
+		{
+			get
+			{
+				return this._OS_ID;
+			}
+			set
+			{
+				if ((this._OS_ID != value))
+				{
+					this.OnOS_IDChanging(value);
+					this.SendPropertyChanging();
+					this._OS_ID = value;
+					this.SendPropertyChanged("OS_ID");
+					this.OnOS_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Address", Storage="_Addresses", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
+		public EntitySet<Address> Addresses
+		{
+			get
+			{
+				return this._Addresses;
+			}
+			set
+			{
+				this._Addresses.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Like", Storage="_Likes", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
+		public EntitySet<Like> Likes
+		{
+			get
+			{
+				return this._Likes;
+			}
+			set
+			{
+				this._Likes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Preference", Storage="_Preferences", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
+		public EntitySet<Preference> Preferences
+		{
+			get
+			{
+				return this._Preferences;
+			}
+			set
+			{
+				this._Preferences.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Share", Storage="_Shares", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
+		public EntitySet<Share> Shares
+		{
+			get
+			{
+				return this._Shares;
+			}
+			set
+			{
+				this._Shares.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Drink", Storage="_Drinks", ThisKey="PK_PROFILE", OtherKey="PK_PROFILE")]
+		public EntitySet<Drink> Drinks
+		{
+			get
+			{
+				return this._Drinks;
+			}
+			set
+			{
+				this._Drinks.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Addresses(Address entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = this;
+		}
+		
+		private void detach_Addresses(Address entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = null;
+		}
+		
+		private void attach_Likes(Like entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = this;
+		}
+		
+		private void detach_Likes(Like entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = null;
+		}
+		
+		private void attach_Preferences(Preference entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = this;
+		}
+		
+		private void detach_Preferences(Preference entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = null;
+		}
+		
+		private void attach_Shares(Share entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = this;
+		}
+		
+		private void detach_Shares(Share entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = null;
+		}
+		
+		private void attach_Drinks(Drink entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = this;
+		}
+		
+		private void detach_Drinks(Drink entity)
+		{
+			this.SendPropertyChanging();
+			entity.Profile = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Shares")]
+	public partial class Share : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PK_SHARE;
+		
+		private int _FK_DRINK;
+		
+		private int _FK_PROFILE;
+		
+		private EntityRef<Profile> _Profile;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPK_SHAREChanging(int value);
+    partial void OnPK_SHAREChanged();
+    partial void OnFK_DRINKChanging(int value);
+    partial void OnFK_DRINKChanged();
+    partial void OnFK_PROFILEChanging(int value);
+    partial void OnFK_PROFILEChanged();
+    #endregion
+		
+		public Share()
+		{
+			this._Profile = default(EntityRef<Profile>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_SHARE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PK_SHARE
+		{
+			get
+			{
+				return this._PK_SHARE;
+			}
+			set
+			{
+				if ((this._PK_SHARE != value))
+				{
+					this.OnPK_SHAREChanging(value);
+					this.SendPropertyChanging();
+					this._PK_SHARE = value;
+					this.SendPropertyChanged("PK_SHARE");
+					this.OnPK_SHAREChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
+		public int FK_DRINK
+		{
+			get
+			{
+				return this._FK_DRINK;
+			}
+			set
+			{
+				if ((this._FK_DRINK != value))
+				{
+					this.OnFK_DRINKChanging(value);
+					this.SendPropertyChanging();
+					this._FK_DRINK = value;
+					this.SendPropertyChanged("FK_DRINK");
+					this.OnFK_DRINKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_PROFILE", DbType="Int NOT NULL")]
+		public int FK_PROFILE
+		{
+			get
+			{
+				return this._FK_PROFILE;
+			}
+			set
+			{
+				if ((this._FK_PROFILE != value))
+				{
+					if (this._Profile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFK_PROFILEChanging(value);
+					this.SendPropertyChanging();
+					this._FK_PROFILE = value;
+					this.SendPropertyChanged("FK_PROFILE");
+					this.OnFK_PROFILEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Share", Storage="_Profile", ThisKey="FK_PROFILE", OtherKey="PK_PROFILE", IsForeignKey=true)]
+		public Profile Profile
+		{
+			get
+			{
+				return this._Profile.Entity;
+			}
+			set
+			{
+				Profile previousValue = this._Profile.Entity;
+				if (((previousValue != value) 
+							|| (this._Profile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Profile.Entity = null;
+						previousValue.Shares.Remove(this);
+					}
+					this._Profile.Entity = value;
+					if ((value != null))
+					{
+						value.Shares.Add(this);
+						this._FK_PROFILE = value.PK_PROFILE;
+					}
+					else
+					{
+						this._FK_PROFILE = default(int);
+					}
+					this.SendPropertyChanged("Profile");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Drink")]
 	public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -595,7 +1737,7 @@ namespace DrinkzApp.Data
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_DRINK", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_DRINK", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int PK_DRINK
 		{
 			get
@@ -964,1148 +2106,6 @@ namespace DrinkzApp.Data
 		{
 			this.SendPropertyChanging();
 			entity.Drink = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredients")]
-	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PK_INGREDIENTS;
-		
-		private string _NAME;
-		
-		private string _QTD;
-		
-		private int _FK_DRINK;
-		
-		private EntityRef<Drink> _Drink;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPK_INGREDIENTSChanging(int value);
-    partial void OnPK_INGREDIENTSChanged();
-    partial void OnNAMEChanging(string value);
-    partial void OnNAMEChanged();
-    partial void OnQTDChanging(string value);
-    partial void OnQTDChanged();
-    partial void OnFK_DRINKChanging(int value);
-    partial void OnFK_DRINKChanged();
-    #endregion
-		
-		public Ingredient()
-		{
-			this._Drink = default(EntityRef<Drink>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_INGREDIENTS", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PK_INGREDIENTS
-		{
-			get
-			{
-				return this._PK_INGREDIENTS;
-			}
-			set
-			{
-				if ((this._PK_INGREDIENTS != value))
-				{
-					this.OnPK_INGREDIENTSChanging(value);
-					this.SendPropertyChanging();
-					this._PK_INGREDIENTS = value;
-					this.SendPropertyChanged("PK_INGREDIENTS");
-					this.OnPK_INGREDIENTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string NAME
-		{
-			get
-			{
-				return this._NAME;
-			}
-			set
-			{
-				if ((this._NAME != value))
-				{
-					this.OnNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._NAME = value;
-					this.SendPropertyChanged("NAME");
-					this.OnNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QTD", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string QTD
-		{
-			get
-			{
-				return this._QTD;
-			}
-			set
-			{
-				if ((this._QTD != value))
-				{
-					this.OnQTDChanging(value);
-					this.SendPropertyChanging();
-					this._QTD = value;
-					this.SendPropertyChanged("QTD");
-					this.OnQTDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
-		public int FK_DRINK
-		{
-			get
-			{
-				return this._FK_DRINK;
-			}
-			set
-			{
-				if ((this._FK_DRINK != value))
-				{
-					if (this._Drink.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFK_DRINKChanging(value);
-					this.SendPropertyChanging();
-					this._FK_DRINK = value;
-					this.SendPropertyChanged("FK_DRINK");
-					this.OnFK_DRINKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_Ingredient", Storage="_Drink", ThisKey="FK_DRINK", OtherKey="PK_DRINK", IsForeignKey=true)]
-		public Drink Drink
-		{
-			get
-			{
-				return this._Drink.Entity;
-			}
-			set
-			{
-				Drink previousValue = this._Drink.Entity;
-				if (((previousValue != value) 
-							|| (this._Drink.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Drink.Entity = null;
-						previousValue.Ingredients.Remove(this);
-					}
-					this._Drink.Entity = value;
-					if ((value != null))
-					{
-						value.Ingredients.Add(this);
-						this._FK_DRINK = value.PK_DRINK;
-					}
-					else
-					{
-						this._FK_DRINK = default(int);
-					}
-					this.SendPropertyChanged("Drink");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Likes")]
-	public partial class Like : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PK_LIKE;
-		
-		private int _FK_DRINK;
-		
-		private int _FK_PROFILE;
-		
-		private EntityRef<Drink> _Drink;
-		
-		private EntityRef<Profile> _Profile;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPK_LIKEChanging(int value);
-    partial void OnPK_LIKEChanged();
-    partial void OnFK_DRINKChanging(int value);
-    partial void OnFK_DRINKChanged();
-    partial void OnFK_PROFILEChanging(int value);
-    partial void OnFK_PROFILEChanged();
-    #endregion
-		
-		public Like()
-		{
-			this._Drink = default(EntityRef<Drink>);
-			this._Profile = default(EntityRef<Profile>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_LIKE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PK_LIKE
-		{
-			get
-			{
-				return this._PK_LIKE;
-			}
-			set
-			{
-				if ((this._PK_LIKE != value))
-				{
-					this.OnPK_LIKEChanging(value);
-					this.SendPropertyChanging();
-					this._PK_LIKE = value;
-					this.SendPropertyChanged("PK_LIKE");
-					this.OnPK_LIKEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
-		public int FK_DRINK
-		{
-			get
-			{
-				return this._FK_DRINK;
-			}
-			set
-			{
-				if ((this._FK_DRINK != value))
-				{
-					if (this._Drink.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFK_DRINKChanging(value);
-					this.SendPropertyChanging();
-					this._FK_DRINK = value;
-					this.SendPropertyChanged("FK_DRINK");
-					this.OnFK_DRINKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_PROFILE", DbType="Int NOT NULL")]
-		public int FK_PROFILE
-		{
-			get
-			{
-				return this._FK_PROFILE;
-			}
-			set
-			{
-				if ((this._FK_PROFILE != value))
-				{
-					if (this._Profile.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFK_PROFILEChanging(value);
-					this.SendPropertyChanging();
-					this._FK_PROFILE = value;
-					this.SendPropertyChanged("FK_PROFILE");
-					this.OnFK_PROFILEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_Like", Storage="_Drink", ThisKey="FK_DRINK", OtherKey="PK_DRINK", IsForeignKey=true)]
-		public Drink Drink
-		{
-			get
-			{
-				return this._Drink.Entity;
-			}
-			set
-			{
-				Drink previousValue = this._Drink.Entity;
-				if (((previousValue != value) 
-							|| (this._Drink.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Drink.Entity = null;
-						previousValue.Likes1.Remove(this);
-					}
-					this._Drink.Entity = value;
-					if ((value != null))
-					{
-						value.Likes1.Add(this);
-						this._FK_DRINK = value.PK_DRINK;
-					}
-					else
-					{
-						this._FK_DRINK = default(int);
-					}
-					this.SendPropertyChanged("Drink");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Like", Storage="_Profile", ThisKey="FK_PROFILE", OtherKey="PK_PROFILE", IsForeignKey=true)]
-		public Profile Profile
-		{
-			get
-			{
-				return this._Profile.Entity;
-			}
-			set
-			{
-				Profile previousValue = this._Profile.Entity;
-				if (((previousValue != value) 
-							|| (this._Profile.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Profile.Entity = null;
-						previousValue.Likes.Remove(this);
-					}
-					this._Profile.Entity = value;
-					if ((value != null))
-					{
-						value.Likes.Add(this);
-						this._FK_PROFILE = value.PK_PROFILE;
-					}
-					else
-					{
-						this._FK_PROFILE = default(int);
-					}
-					this.SendPropertyChanged("Profile");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Picture")]
-	public partial class Picture : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PK_PICTURE;
-		
-		private string _URL_IMAGE;
-		
-		private int _FK_DRINK;
-		
-		private EntityRef<Drink> _Drink;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPK_PICTUREChanging(int value);
-    partial void OnPK_PICTUREChanged();
-    partial void OnURL_IMAGEChanging(string value);
-    partial void OnURL_IMAGEChanged();
-    partial void OnFK_DRINKChanging(int value);
-    partial void OnFK_DRINKChanged();
-    #endregion
-		
-		public Picture()
-		{
-			this._Drink = default(EntityRef<Drink>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_PICTURE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PK_PICTURE
-		{
-			get
-			{
-				return this._PK_PICTURE;
-			}
-			set
-			{
-				if ((this._PK_PICTURE != value))
-				{
-					this.OnPK_PICTUREChanging(value);
-					this.SendPropertyChanging();
-					this._PK_PICTURE = value;
-					this.SendPropertyChanged("PK_PICTURE");
-					this.OnPK_PICTUREChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL_IMAGE", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string URL_IMAGE
-		{
-			get
-			{
-				return this._URL_IMAGE;
-			}
-			set
-			{
-				if ((this._URL_IMAGE != value))
-				{
-					this.OnURL_IMAGEChanging(value);
-					this.SendPropertyChanging();
-					this._URL_IMAGE = value;
-					this.SendPropertyChanged("URL_IMAGE");
-					this.OnURL_IMAGEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
-		public int FK_DRINK
-		{
-			get
-			{
-				return this._FK_DRINK;
-			}
-			set
-			{
-				if ((this._FK_DRINK != value))
-				{
-					if (this._Drink.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFK_DRINKChanging(value);
-					this.SendPropertyChanging();
-					this._FK_DRINK = value;
-					this.SendPropertyChanged("FK_DRINK");
-					this.OnFK_DRINKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_Picture", Storage="_Drink", ThisKey="FK_DRINK", OtherKey="PK_DRINK", IsForeignKey=true)]
-		public Drink Drink
-		{
-			get
-			{
-				return this._Drink.Entity;
-			}
-			set
-			{
-				Drink previousValue = this._Drink.Entity;
-				if (((previousValue != value) 
-							|| (this._Drink.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Drink.Entity = null;
-						previousValue.Pictures.Remove(this);
-					}
-					this._Drink.Entity = value;
-					if ((value != null))
-					{
-						value.Pictures.Add(this);
-						this._FK_DRINK = value.PK_DRINK;
-					}
-					else
-					{
-						this._FK_DRINK = default(int);
-					}
-					this.SendPropertyChanged("Drink");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Preferences")]
-	public partial class Preference : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PK_PREFERENCES;
-		
-		private int _FK_DRINK;
-		
-		private int _FK_PROFILE;
-		
-		private EntityRef<Profile> _Profile;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPK_PREFERENCESChanging(int value);
-    partial void OnPK_PREFERENCESChanged();
-    partial void OnFK_DRINKChanging(int value);
-    partial void OnFK_DRINKChanged();
-    partial void OnFK_PROFILEChanging(int value);
-    partial void OnFK_PROFILEChanged();
-    #endregion
-		
-		public Preference()
-		{
-			this._Profile = default(EntityRef<Profile>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_PREFERENCES", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PK_PREFERENCES
-		{
-			get
-			{
-				return this._PK_PREFERENCES;
-			}
-			set
-			{
-				if ((this._PK_PREFERENCES != value))
-				{
-					this.OnPK_PREFERENCESChanging(value);
-					this.SendPropertyChanging();
-					this._PK_PREFERENCES = value;
-					this.SendPropertyChanged("PK_PREFERENCES");
-					this.OnPK_PREFERENCESChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
-		public int FK_DRINK
-		{
-			get
-			{
-				return this._FK_DRINK;
-			}
-			set
-			{
-				if ((this._FK_DRINK != value))
-				{
-					this.OnFK_DRINKChanging(value);
-					this.SendPropertyChanging();
-					this._FK_DRINK = value;
-					this.SendPropertyChanged("FK_DRINK");
-					this.OnFK_DRINKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_PROFILE", DbType="Int NOT NULL")]
-		public int FK_PROFILE
-		{
-			get
-			{
-				return this._FK_PROFILE;
-			}
-			set
-			{
-				if ((this._FK_PROFILE != value))
-				{
-					if (this._Profile.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFK_PROFILEChanging(value);
-					this.SendPropertyChanging();
-					this._FK_PROFILE = value;
-					this.SendPropertyChanged("FK_PROFILE");
-					this.OnFK_PROFILEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Preference", Storage="_Profile", ThisKey="FK_PROFILE", OtherKey="PK_PROFILE", IsForeignKey=true)]
-		public Profile Profile
-		{
-			get
-			{
-				return this._Profile.Entity;
-			}
-			set
-			{
-				Profile previousValue = this._Profile.Entity;
-				if (((previousValue != value) 
-							|| (this._Profile.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Profile.Entity = null;
-						previousValue.Preferences.Remove(this);
-					}
-					this._Profile.Entity = value;
-					if ((value != null))
-					{
-						value.Preferences.Add(this);
-						this._FK_PROFILE = value.PK_PROFILE;
-					}
-					else
-					{
-						this._FK_PROFILE = default(int);
-					}
-					this.SendPropertyChanged("Profile");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Profile")]
-	public partial class Profile : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PK_PROFILE;
-		
-		private string _FACEBOOK_ID;
-		
-		private string _NAME;
-		
-		private string _URL_IMAGE;
-		
-		private string _DEVICE_ID;
-		
-		private int _OS_ID;
-		
-		private EntitySet<Address> _Addresses;
-		
-		private EntitySet<Drink> _Drinks;
-		
-		private EntitySet<Like> _Likes;
-		
-		private EntitySet<Preference> _Preferences;
-		
-		private EntitySet<Share> _Shares;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPK_PROFILEChanging(int value);
-    partial void OnPK_PROFILEChanged();
-    partial void OnFACEBOOK_IDChanging(string value);
-    partial void OnFACEBOOK_IDChanged();
-    partial void OnNAMEChanging(string value);
-    partial void OnNAMEChanged();
-    partial void OnURL_IMAGEChanging(string value);
-    partial void OnURL_IMAGEChanged();
-    partial void OnDEVICE_IDChanging(string value);
-    partial void OnDEVICE_IDChanged();
-    partial void OnOS_IDChanging(int value);
-    partial void OnOS_IDChanged();
-    #endregion
-		
-		public Profile()
-		{
-			this._Addresses = new EntitySet<Address>(new Action<Address>(this.attach_Addresses), new Action<Address>(this.detach_Addresses));
-			this._Drinks = new EntitySet<Drink>(new Action<Drink>(this.attach_Drinks), new Action<Drink>(this.detach_Drinks));
-			this._Likes = new EntitySet<Like>(new Action<Like>(this.attach_Likes), new Action<Like>(this.detach_Likes));
-			this._Preferences = new EntitySet<Preference>(new Action<Preference>(this.attach_Preferences), new Action<Preference>(this.detach_Preferences));
-			this._Shares = new EntitySet<Share>(new Action<Share>(this.attach_Shares), new Action<Share>(this.detach_Shares));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_PROFILE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PK_PROFILE
-		{
-			get
-			{
-				return this._PK_PROFILE;
-			}
-			set
-			{
-				if ((this._PK_PROFILE != value))
-				{
-					this.OnPK_PROFILEChanging(value);
-					this.SendPropertyChanging();
-					this._PK_PROFILE = value;
-					this.SendPropertyChanged("PK_PROFILE");
-					this.OnPK_PROFILEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACEBOOK_ID", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string FACEBOOK_ID
-		{
-			get
-			{
-				return this._FACEBOOK_ID;
-			}
-			set
-			{
-				if ((this._FACEBOOK_ID != value))
-				{
-					this.OnFACEBOOK_IDChanging(value);
-					this.SendPropertyChanging();
-					this._FACEBOOK_ID = value;
-					this.SendPropertyChanged("FACEBOOK_ID");
-					this.OnFACEBOOK_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string NAME
-		{
-			get
-			{
-				return this._NAME;
-			}
-			set
-			{
-				if ((this._NAME != value))
-				{
-					this.OnNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._NAME = value;
-					this.SendPropertyChanged("NAME");
-					this.OnNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL_IMAGE", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string URL_IMAGE
-		{
-			get
-			{
-				return this._URL_IMAGE;
-			}
-			set
-			{
-				if ((this._URL_IMAGE != value))
-				{
-					this.OnURL_IMAGEChanging(value);
-					this.SendPropertyChanging();
-					this._URL_IMAGE = value;
-					this.SendPropertyChanged("URL_IMAGE");
-					this.OnURL_IMAGEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DEVICE_ID", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string DEVICE_ID
-		{
-			get
-			{
-				return this._DEVICE_ID;
-			}
-			set
-			{
-				if ((this._DEVICE_ID != value))
-				{
-					this.OnDEVICE_IDChanging(value);
-					this.SendPropertyChanging();
-					this._DEVICE_ID = value;
-					this.SendPropertyChanged("DEVICE_ID");
-					this.OnDEVICE_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OS_ID", DbType="Int NOT NULL")]
-		public int OS_ID
-		{
-			get
-			{
-				return this._OS_ID;
-			}
-			set
-			{
-				if ((this._OS_ID != value))
-				{
-					this.OnOS_IDChanging(value);
-					this.SendPropertyChanging();
-					this._OS_ID = value;
-					this.SendPropertyChanged("OS_ID");
-					this.OnOS_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Address", Storage="_Addresses", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
-		public EntitySet<Address> Addresses
-		{
-			get
-			{
-				return this._Addresses;
-			}
-			set
-			{
-				this._Addresses.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Drink", Storage="_Drinks", ThisKey="PK_PROFILE", OtherKey="PK_PROFILE")]
-		public EntitySet<Drink> Drinks
-		{
-			get
-			{
-				return this._Drinks;
-			}
-			set
-			{
-				this._Drinks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Like", Storage="_Likes", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
-		public EntitySet<Like> Likes
-		{
-			get
-			{
-				return this._Likes;
-			}
-			set
-			{
-				this._Likes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Preference", Storage="_Preferences", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
-		public EntitySet<Preference> Preferences
-		{
-			get
-			{
-				return this._Preferences;
-			}
-			set
-			{
-				this._Preferences.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Share", Storage="_Shares", ThisKey="PK_PROFILE", OtherKey="FK_PROFILE")]
-		public EntitySet<Share> Shares
-		{
-			get
-			{
-				return this._Shares;
-			}
-			set
-			{
-				this._Shares.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Addresses(Address entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = this;
-		}
-		
-		private void detach_Addresses(Address entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = null;
-		}
-		
-		private void attach_Drinks(Drink entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = this;
-		}
-		
-		private void detach_Drinks(Drink entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = null;
-		}
-		
-		private void attach_Likes(Like entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = this;
-		}
-		
-		private void detach_Likes(Like entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = null;
-		}
-		
-		private void attach_Preferences(Preference entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = this;
-		}
-		
-		private void detach_Preferences(Preference entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = null;
-		}
-		
-		private void attach_Shares(Share entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = this;
-		}
-		
-		private void detach_Shares(Share entity)
-		{
-			this.SendPropertyChanging();
-			entity.Profile = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Shares")]
-	public partial class Share : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PK_SHARE;
-		
-		private int _FK_DRINK;
-		
-		private int _FK_PROFILE;
-		
-		private EntityRef<Profile> _Profile;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPK_SHAREChanging(int value);
-    partial void OnPK_SHAREChanged();
-    partial void OnFK_DRINKChanging(int value);
-    partial void OnFK_DRINKChanged();
-    partial void OnFK_PROFILEChanging(int value);
-    partial void OnFK_PROFILEChanged();
-    #endregion
-		
-		public Share()
-		{
-			this._Profile = default(EntityRef<Profile>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PK_SHARE", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PK_SHARE
-		{
-			get
-			{
-				return this._PK_SHARE;
-			}
-			set
-			{
-				if ((this._PK_SHARE != value))
-				{
-					this.OnPK_SHAREChanging(value);
-					this.SendPropertyChanging();
-					this._PK_SHARE = value;
-					this.SendPropertyChanged("PK_SHARE");
-					this.OnPK_SHAREChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_DRINK", DbType="Int NOT NULL")]
-		public int FK_DRINK
-		{
-			get
-			{
-				return this._FK_DRINK;
-			}
-			set
-			{
-				if ((this._FK_DRINK != value))
-				{
-					this.OnFK_DRINKChanging(value);
-					this.SendPropertyChanging();
-					this._FK_DRINK = value;
-					this.SendPropertyChanged("FK_DRINK");
-					this.OnFK_DRINKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FK_PROFILE", DbType="Int NOT NULL")]
-		public int FK_PROFILE
-		{
-			get
-			{
-				return this._FK_PROFILE;
-			}
-			set
-			{
-				if ((this._FK_PROFILE != value))
-				{
-					if (this._Profile.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFK_PROFILEChanging(value);
-					this.SendPropertyChanging();
-					this._FK_PROFILE = value;
-					this.SendPropertyChanged("FK_PROFILE");
-					this.OnFK_PROFILEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Profile_Share", Storage="_Profile", ThisKey="FK_PROFILE", OtherKey="PK_PROFILE", IsForeignKey=true)]
-		public Profile Profile
-		{
-			get
-			{
-				return this._Profile.Entity;
-			}
-			set
-			{
-				Profile previousValue = this._Profile.Entity;
-				if (((previousValue != value) 
-							|| (this._Profile.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Profile.Entity = null;
-						previousValue.Shares.Remove(this);
-					}
-					this._Profile.Entity = value;
-					if ((value != null))
-					{
-						value.Shares.Add(this);
-						this._FK_PROFILE = value.PK_PROFILE;
-					}
-					else
-					{
-						this._FK_PROFILE = default(int);
-					}
-					this.SendPropertyChanged("Profile");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

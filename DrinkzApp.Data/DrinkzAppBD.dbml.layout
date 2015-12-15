@@ -14,58 +14,24 @@
         <elementListCompartment Id="ccaab2ad-9014-48d2-9a81-e1256e79984b" absoluteBounds="1.0150000000000006, 3.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="04d368cc-555b-43a4-8dca-556573f8b655" absoluteBounds="5, 3.5, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/DrinkzAppBDDataContext/Drink" />
-      <nestedChildShapes>
-        <elementListCompartment Id="38d6d5b5-7c2a-4163-8e0a-d7cee7d548b5" absoluteBounds="5.0150000000000006, 3.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(3 : 3.97679768880208); (3.07291666666667 : 3.97679768880208 : JumpStart); (3.23958333333333 : 3.97679768880208 : JumpEnd); (5 : 3.97679768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DrinkzAppBDDataContext/Category/Category_Drink" />
-      <nodes>
-        <classShapeMoniker Id="ab5d97f0-39c5-4e19-892f-28c2245099e0" />
-        <classShapeMoniker Id="04d368cc-555b-43a4-8dca-556573f8b655" />
-      </nodes>
-    </associationConnector>
     <classShape Id="cb4a4558-9f94-483c-95c0-e991b85bfe4a" absoluteBounds="10.125, 6.125, 2, 1.5785953776041666">
       <DataClassMoniker Name="/DrinkzAppBDDataContext/Ingredient" />
       <nestedChildShapes>
         <elementListCompartment Id="f07aa151-483d-4416-a2dd-212332271914" absoluteBounds="10.14, 6.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7 : 5.66189647265625); (11.15625 : 5.66189647265625); (11.15625 : 6.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DrinkzAppBDDataContext/Drink/Drink_Ingredient" />
-      <nodes>
-        <classShapeMoniker Id="04d368cc-555b-43a4-8dca-556573f8b655" />
-        <classShapeMoniker Id="cb4a4558-9f94-483c-95c0-e991b85bfe4a" />
-      </nodes>
-    </associationConnector>
     <classShape Id="63dc7818-f2d0-4be6-8ae3-01ef6f38aa27" absoluteBounds="8.125, 3.75, 2, 1.3862939453125">
       <DataClassMoniker Name="/DrinkzAppBDDataContext/Like" />
       <nestedChildShapes>
         <elementListCompartment Id="20ecbd1a-9998-41ff-aed7-5b90b497e33c" absoluteBounds="8.14, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7 : 4.44314697265625); (8.125 : 4.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DrinkzAppBDDataContext/Drink/Drink_Like" />
-      <nodes>
-        <classShapeMoniker Id="04d368cc-555b-43a4-8dca-556573f8b655" />
-        <classShapeMoniker Id="63dc7818-f2d0-4be6-8ae3-01ef6f38aa27" />
-      </nodes>
-    </associationConnector>
     <classShape Id="366fee1d-331d-493f-9c53-38332ba1e00b" absoluteBounds="4, 6.5, 2, 1.3862939453125">
       <DataClassMoniker Name="/DrinkzAppBDDataContext/Picture" />
       <nestedChildShapes>
         <elementListCompartment Id="8ac6b245-4c66-40a9-86f8-9100f6178a59" absoluteBounds="4.015, 6.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 6.23240397135417); (5.5 : 6.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DrinkzAppBDDataContext/Drink/Drink_Picture" />
-      <nodes>
-        <classShapeMoniker Id="04d368cc-555b-43a4-8dca-556573f8b655" />
-        <classShapeMoniker Id="366fee1d-331d-493f-9c53-38332ba1e00b" />
-      </nodes>
-    </associationConnector>
     <classShape Id="45ef5620-6cad-418e-9437-ba26c0e83dd6" absoluteBounds="0.75, 0.5, 2, 1.3862939453125">
       <DataClassMoniker Name="/DrinkzAppBDDataContext/Preference" />
       <nestedChildShapes>
@@ -85,13 +51,6 @@
         <classShapeMoniker Id="62d3ac16-13ab-4f5c-8458-08bb3d4a92fe" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.2187475 : 2.4631982421875); (6.2187475 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DrinkzAppBDDataContext/Profile/Profile_Drink" />
-      <nodes>
-        <classShapeMoniker Id="a6c1e605-a8fd-4d90-a0cd-f583625339fc" />
-        <classShapeMoniker Id="04d368cc-555b-43a4-8dca-556573f8b655" />
-      </nodes>
-    </associationConnector>
     <associationConnector edgePoints="[(7.5 : 2.39829752604167); (8.53125 : 2.39829752604167); (8.53125 : 3.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DrinkzAppBDDataContext/Profile/Profile_Like" />
       <nodes>
@@ -99,7 +58,7 @@
         <classShapeMoniker Id="63dc7818-f2d0-4be6-8ae3-01ef6f38aa27" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 1.0625); (2.75 : 1.0625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 1.19314697265625); (2.75 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DrinkzAppBDDataContext/Profile/Profile_Preference" />
       <nodes>
         <classShapeMoniker Id="a6c1e605-a8fd-4d90-a0cd-f583625339fc" />
@@ -117,6 +76,47 @@
       <nodes>
         <classShapeMoniker Id="a6c1e605-a8fd-4d90-a0cd-f583625339fc" />
         <classShapeMoniker Id="82d42d4f-a7b2-44bf-952a-1402cdc2c7e4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="1034a2e1-af4e-48a3-9904-3e42de6a47db" absoluteBounds="5.375, 3.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/DrinkzAppBDDataContext/Drink" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f2d4c077-a7f6-4969-824b-fe5d88edc114" absoluteBounds="5.39, 4.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.375 : 5.66189647265625); (11.15625 : 5.66189647265625); (11.15625 : 6.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DrinkzAppBDDataContext/Drink/Drink_Ingredient" />
+      <nodes>
+        <classShapeMoniker Id="1034a2e1-af4e-48a3-9904-3e42de6a47db" />
+        <classShapeMoniker Id="cb4a4558-9f94-483c-95c0-e991b85bfe4a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.375 : 4.44314697265625); (8.125 : 4.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DrinkzAppBDDataContext/Drink/Drink_Like" />
+      <nodes>
+        <classShapeMoniker Id="1034a2e1-af4e-48a3-9904-3e42de6a47db" />
+        <classShapeMoniker Id="63dc7818-f2d0-4be6-8ae3-01ef6f38aa27" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.6875 : 6.48240397135417); (5.6875 : 6.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DrinkzAppBDDataContext/Drink/Drink_Picture" />
+      <nodes>
+        <classShapeMoniker Id="1034a2e1-af4e-48a3-9904-3e42de6a47db" />
+        <classShapeMoniker Id="366fee1d-331d-493f-9c53-38332ba1e00b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 4.10179768880208); (3.07291666666667 : 4.10179768880208 : JumpStart); (3.23958333333333 : 4.10179768880208 : JumpEnd); (5.375 : 4.10179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DrinkzAppBDDataContext/Category/Category_Drink" />
+      <nodes>
+        <classShapeMoniker Id="ab5d97f0-39c5-4e19-892f-28c2245099e0" />
+        <classShapeMoniker Id="1034a2e1-af4e-48a3-9904-3e42de6a47db" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.4375 : 2.4631982421875); (6.4375 : 3.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DrinkzAppBDDataContext/Profile/Profile_Drink" />
+      <nodes>
+        <classShapeMoniker Id="a6c1e605-a8fd-4d90-a0cd-f583625339fc" />
+        <classShapeMoniker Id="1034a2e1-af4e-48a3-9904-3e42de6a47db" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

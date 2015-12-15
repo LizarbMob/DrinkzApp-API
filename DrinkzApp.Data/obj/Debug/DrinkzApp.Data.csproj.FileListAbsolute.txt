@@ -3,3 +3,4 @@ C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Data\bin\Debug\DrinkzApp
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Data\bin\Debug\DrinkzApp.Data.pdb
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Data\obj\Debug\DrinkzApp.Data.dll
 C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Data\obj\Debug\DrinkzApp.Data.pdb
+C:\Users\Joaop\Documents\GitHub\DrinkzApp-API\DrinkzApp.Data\obj\Debug\DrinkzApp.Data.csprojResolveAssemblyReference.cache
